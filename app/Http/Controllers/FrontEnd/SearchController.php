@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontEnd;
 
-use App\Product;
+use App\Models\Product;
 use Input;
+use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {

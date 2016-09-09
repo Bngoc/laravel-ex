@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,28 +12,28 @@ class Product extends Model
 
     public function cate()
     {
-        return $this->belongsTo('App\Cate', 'cate_id');
+        return $this->belongsTo('App\Models\Cate', 'cate_id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\Admin');
+        return $this->belongsTo('App\Models\Admin');
     }
 
     public function pimage()
     {
-        return $this->hasMany('App\ProductImage');
+        return $this->hasMany('App\Models\ProductImage');
     }
     public function productcolor()
     {
-        return $this->hasMany('App\User\ProductColor');
+        return $this->hasMany('App\Models\User\ProductColor');
     }
     public function productsize()
     {
-        return $this->hasMany('App\User\ProductSize');
+        return $this->hasMany('App\Models\User\ProductSize');
     }
     public function productsoluong()
     {
-        return $this->hasMany('App\User\ProductCount');
+        return $this->hasMany('App\Models\User\ProductCount');
     }
 }

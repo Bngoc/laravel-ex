@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FrontEnd;
 
 //use Illuminate\Http\Request;
 
 //use App\Http\Requests;
 use App\Product;
-use App\User\ProductCount;
-use App\User\ProductSize;
-use App\User\ProductSoLuong;
+use App\Models\User\ProductCount;
+use App\Models\User\ProductSize;
+use App\Models\User\ProductSoLuong;
 use Cart;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Input;
 use Redirect;
 use Request;
+use App\Http\Controllers\Controller;
 
 class ShoppingCartController extends Controller
 {

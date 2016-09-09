@@ -1,12 +1,12 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace app\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
 use Input;
-use App\MustHave;
+use App\Models\MustHave;
 use Validator;
 use Illuminate\Support\Facades\Redirect;
 use DB;

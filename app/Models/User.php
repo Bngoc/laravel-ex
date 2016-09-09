@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace app\Models;
 
 use Auth;
 use Illuminate\Auth\Authenticatable;
@@ -36,9 +36,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     protected $guard = "admins";
 
+    const ACL_LEVEL_SUPERADMIN = 1;
+    const ACL_LEVEL_ADMIN = 2;
+    const ACL_LEVEL_MEMBER = 3;
+
     public function product()
     {
-        return $this->hasMany('App\Product');
+        return $this->hasMany('App\Models\Product');
     }
 
     protected static function admin()

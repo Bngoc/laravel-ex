@@ -2,7 +2,7 @@
 
 namespace app\Http\Controllers\Admin;
 
-use App\Admin;
+use App\Models\Admin;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
@@ -13,13 +13,14 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Input;
 use Response;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class AuthController extends Controller
 {
     
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/admin/dashboard';
     //protected $guard = 'admin';
 
     //public function __construct(Guard $auth, Registrar $registrar)
@@ -34,10 +35,8 @@ class AuthController extends Controller
 
     public function getLogin()
     {
-        // if (!auth('admin')->check()) {
         if (Auth::guard('admin')->check()) {
-            return redirect('/admin');
-            //return view('admin.login');
+            return redirect::route('admin.dashboard');
         } else {
             return view('admin.login');
         }
@@ -76,7 +75,7 @@ class AuthController extends Controller
             $login = array(
                 'username' => Input::get('user'),
                 'password' => Input::get('password'),
-                'level' => 1,
+                'level' => User::ACL_LEVEL_SUPERADMIN,
             );
 
             // if (Auth::guard('web')->attempt($login)) {
@@ -85,7 +84,8 @@ class AuthController extends Controller
             //     return redirect()->back();
             // }
             if (Auth::guard('admin')->attempt($login, $re_login->has('remember'))) {
-                $result ['_url'] = URL('/admin');
+                $result ['_url'] = route('admin.dashboard');
+//                $result ['_url'] = URL('admin/cate/list');
                 $result ['_key'] = 'Oke';
                 $result['info'] = 'Successfully logged in .... redirecting';
             } else {

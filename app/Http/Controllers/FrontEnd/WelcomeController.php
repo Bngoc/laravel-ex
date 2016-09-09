@@ -1,11 +1,11 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace app\Http\Controllers\FrontEnd;
 
 /// No query results for model check
 use App\Http\Controllers\Controller;
-use App\Cate;
-use App\Product;
+use App\Models\Cate;
+use App\Models\Product;
 use DB, Mail, Redirect, Route;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\ContactRequest;

@@ -1,8 +1,8 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace app\Http\Controllers\Admin;
 
-use App\User;
+use App\Models\User;
 
 use Auth;
 use Hash;
@@ -18,46 +18,37 @@ use App\Http\Requests\UserRequest;
 
 class AdminController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('admin', ['except' => 'getLogout']);
-    // }
+     public function __construct()
+     {
+         $this->middleware('admin', ['except' => 'getLogout']);
+     }
 
     public function index()
     {
         // profile user
-        //return Redirect::action('AdminController@getEdit', array('id' => User::admin()->id));
+        //return Redirect::action('Admin\AdminController@getEdit', array('id' => User::admin()->id));
         // list user
-        return Redirect::action('AdminController@getList');
+        return Redirect::action('Admin\AdminController@getList');
     }
     
     public function getLogout()
     {
         Auth::guard('admin')->logout();
-
-        return redirect('admin');
+        \Session::flush();
+        return redirect('admin/login');
     }
 
 
-    // public function getLogin()
-    // {
-    //     if (!Auth::guard('admin')->check()) {
-    //         return view('admin.login');
-    //     } else {
-    //         return "view('admin.master')";
-    //         //return redirect('/admin/cate/list');
-    //     }
+//     public function getLogin()
+//     {
+//         if (Auth::guard('admin')->check()) {
+//             return "view('admin.master')";
+//         } else {
+//             //return redirect('/admin/cate/list');
+//             return view('admin.login');
+//         }
+//     }
 
-    // }
-    // public function getLogin()
-    // {
-    //     $auth = auth()->guard('admin');
-    //     if (!$auth->check()) {
-    //         return view('admin.login');
-    //     } else {
-    //         return redirect('admin');
-    //     }
-    // }
 
     // //public function postLogin(LoginRequest $re_login)
     // public function postLogin(Request $re_login)

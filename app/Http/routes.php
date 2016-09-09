@@ -13,48 +13,46 @@
 
 View::share('title', 'Admin - Khoa Phạm');
 
-/*
-/ Admin
-*/
-Route::get('/admin', 'AdminController@index');
+Route::get('/admin/dashboard', ['as'=>'admin.dashboard', 'uses'=>'Admin\AdminController@index']);
+
 // middleware => 'auth' de bat dang nhap truoc khi thuc hien
 Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
 
-    Route::get('/logout', ['as' => 'admin.logout', 'uses' => 'AdminController@getLogout']);
+    Route::get('/logout', ['as' => 'admin.logout', 'uses' => 'Admin\AdminController@getLogout']);
 
     Route::group(['prefix' => 'cate'], function () {
-        Route::get('/list', ['as' => 'admin.cate.list', 'uses' => 'CateController@getlist']);
-        Route::get('/add', ['as' => 'admin.cate.getAdd', 'uses' => 'CateController@getAdd']);
-        Route::post('/add', ['as' => 'admin.cate.postAdd', 'uses' => 'CateController@postAdd']);
-        Route::get('/delele/{id}', ['as' => 'admin.cate.getDelete', 'uses' => 'CateController@getDelete']);
-        Route::get('/edit/{id}', ['as' => 'admin.cate.getEdit', 'uses' => 'CateController@getEdit']);
-        Route::post('/edit/{id}', ['as' => 'admin.cate.postEdit', 'uses' => 'CateController@postEdit']);
+        Route::get('/list', ['as' => 'admin.cate.list', 'uses' => 'Admin\CateController@getlist']);
+        Route::get('/add', ['as' => 'admin.cate.getAdd', 'uses' => 'Admin\CateController@getAdd']);
+        Route::post('/add', ['as' => 'admin.cate.postAdd', 'uses' => 'Admin\CateController@postAdd']);
+        Route::get('/delele/{id}', ['as' => 'admin.cate.getDelete', 'uses' => 'Admin\CateController@getDelete']);
+        Route::get('/edit/{id}', ['as' => 'admin.cate.getEdit', 'uses' => 'Admin\CateController@getEdit']);
+        Route::post('/edit/{id}', ['as' => 'admin.cate.postEdit', 'uses' => 'Admin\CateController@postEdit']);
     });
 
     Route::group(['prefix' => 'product'], function () {
-        Route::get('add', ['as' => 'admin.product.getAdd', 'uses' => 'ProductController@getAdd']);
-        Route::post('add', ['as' => 'admin.product.postAdd', 'uses' => 'ProductController@postAdd']);
-        Route::get('list', ['as' => 'admin.product.list', 'uses' => 'ProductController@getList']);
-        Route::get('delete/{_id}', ['as' => 'admin.product.getDelete', 'uses' => 'ProductController@getDelete']);
-        Route::get('edit/{id}', ['as' => 'admin.product.getEdit', 'uses' => 'ProductController@getEdit']);
-        Route::post('edit/{id}', ['as' => 'admin.product.postEdit', 'uses' => 'ProductController@postEdit']);
-        Route::get('delimg/{id}', ['as' => 'admin.product.getDelImg', 'uses' => 'ProductController@getDelImg']);
+        Route::get('add', ['as' => 'admin.product.getAdd', 'uses' => 'Admin\ProductController@getAdd']);
+        Route::post('add', ['as' => 'admin.product.postAdd', 'uses' => 'Admin\ProductController@postAdd']);
+        Route::get('list', ['as' => 'admin.product.list', 'uses' => 'Admin\ProductController@getList']);
+        Route::get('delete/{_id}', ['as' => 'admin.product.getDelete', 'uses' => 'Admin\ProductController@getDelete']);
+        Route::get('edit/{id}', ['as' => 'admin.product.getEdit', 'uses' => 'Admin\ProductController@getEdit']);
+        Route::post('edit/{id}', ['as' => 'admin.product.postEdit', 'uses' => 'Admin\ProductController@postEdit']);
+        Route::get('delimg/{id}', ['as' => 'admin.product.getDelImg', 'uses' => 'Admin\ProductController@getDelImg']);
     });
     Route::group(['prefix' => 'user'], function () {
-        Route::get('add', ['as' => 'admin.user.getAdd', 'uses' => 'AdminController@getAdd']);
-        Route::post('add', ['as' => 'admin.user.postAdd', 'uses' => 'AdminController@postAdd']);
-        Route::get('list', ['as' => 'admin.user.list', 'uses' => 'AdminController@getList']);
-        Route::get('delete/{_id}', ['as' => 'admin.user.getDelete', 'uses' => 'AdminController@getDelete']);
-        Route::get('edit/{id}', ['as' => 'admin.user.getEdit', 'uses' => 'AdminController@getEdit']);
-        Route::post('edit/{id}', ['as' => 'admin.user.postEdit', 'uses' => 'AdminController@postEdit']);
+        Route::get('add', ['as' => 'admin.user.getAdd', 'uses' => 'Admin\AdminController@getAdd']);
+        Route::post('add', ['as' => 'admin.user.postAdd', 'uses' => 'Admin\AdminController@postAdd']);
+        Route::get('list', ['as' => 'admin.user.list', 'uses' => 'Admin\AdminController@getList']);
+        Route::get('delete/{_id}', ['as' => 'admin.user.getDelete', 'uses' => 'Admin\AdminController@getDelete']);
+        Route::get('edit/{id}', ['as' => 'admin.user.getEdit', 'uses' => 'Admin\AdminController@getEdit']);
+        Route::post('edit/{id}', ['as' => 'admin.user.postEdit', 'uses' => 'Admin\AdminController@postEdit']);
     });
     Route::group(['prefix' => 'musthave'], function () {
-        Route::get('add', ['as' => 'must.getAdd', 'uses' => 'MustHaveController@getAdd']);
-        Route::post('add', ['as' => 'must.postAdd', 'uses' => 'MustHaveController@postAdd']);
-        Route::get('delete/{id}', ['as' => 'must.getDel', 'uses' => 'MustHaveController@getDel']);
-        Route::get('edit/{id}', ['as' => 'must.getEdit', 'uses' => 'MustHaveController@getEdit']);
-        Route::post('edit/{id}', ['as' => 'must.postEdit', 'uses' => 'MustHaveController@postEdit']);
-        Route::get('list', ['as' => 'must.list', 'uses' => 'MustHaveController@getlist']);
+        Route::get('add', ['as' => 'must.getAdd', 'uses' => 'Admin\MustHaveController@getAdd']);
+        Route::post('add', ['as' => 'must.postAdd', 'uses' => 'Admin\MustHaveController@postAdd']);
+        Route::get('delete/{id}', ['as' => 'must.getDel', 'uses' => 'Admin\MustHaveController@getDel']);
+        Route::get('edit/{id}', ['as' => 'must.getEdit', 'uses' => 'Admin\MustHaveController@getEdit']);
+        Route::post('edit/{id}', ['as' => 'must.postEdit', 'uses' => 'Admin\MustHaveController@postEdit']);
+        Route::get('list', ['as' => 'must.list', 'uses' => 'Admin\MustHaveController@getlist']);
     });
 });
 
@@ -97,46 +95,46 @@ Route::group(['middleware' => 'web'], function () {
     //Route::get('/home', 'HomeController@index');
 });
 
-Route::get('/', ['as' => 'home', 'uses' => 'WelcomeController@index']);
+Route::get('/', ['as' => 'home', 'uses' => 'FrontEnd\WelcomeController@index']);
 
 //cac danh muc san pham
 Route::get(
     'danh-muc/{categories}',
-    array('as' => 'category_page', 'uses' => 'WelcomeController@showproduct')
+    array('as' => 'category_page', 'uses' => 'FrontEnd\WelcomeController@showproduct')
 );
 Route::get(
     'danh-muc/{categories}/{products}',
-    array('as' => 'product_page', 'uses' => 'WelcomeController@showproduct')
+    array('as' => 'product_page', 'uses' => 'FrontEnd\WelcomeController@showproduct')
 );
 Route::get(
     'danh-muc/{categories}/{products}/{sections}',
-    array('as' => 'sections_page', 'uses' => 'WelcomeController@showproduct')
+    array('as' => 'sections_page', 'uses' => 'FrontEnd\WelcomeController@showproduct')
 );
 
 Route::get(
     'san-pham/{alias}/{id}',
-    array('as' => 'section', 'uses' => 'WelcomeController@showdetail')
+    array('as' => 'section', 'uses' => 'FrontEnd\WelcomeController@showdetail')
 )
     ->where('id', '[0-9]+');
 
-Route::get('/search', ['as' => 'search', 'uses' => 'SearchController@getSearch']);
+Route::get('/search', ['as' => 'search', 'uses' => 'FrontEnd\SearchController@getSearch']);
 
 // danh muc lien he
 Route::get(
     'lien-he',
-    array('as' => 'getlienhe', 'uses' => 'WelcomeController@getlienhe')
+    array('as' => 'getlienhe', 'uses' => 'FrontEnd\WelcomeController@getlienhe')
 );
 Route::post(
     'lien-he',
-    array('as' => 'postlienhe', 'uses' => 'WelcomeController@postlienhe')
+    array('as' => 'postlienhe', 'uses' => 'FrontEnd\WelcomeController@postlienhe')
 );
 
 // Shopping cart
-Route::get('/cart', ['as' => 'getCart', 'uses' => 'ShoppingCartController@getCart']);
-Route::post('/cart', ['as' => 'postCart', 'uses' => 'ShoppingCartController@postCart']);
-Route::post('editcart', ['as' => 'postEditCart', 'uses' => 'ShoppingCartController@postEditCart']);
-Route::get('detelecart/{id}', ['as' => 'postDelCart', 'uses' => 'ShoppingCartController@getDelCart']);
-Route::post('color-size-soluong', ['as' => 'color-size-soluong', 'uses' => 'ShoppingCartController@getCountPro']);
-Route::get('clearcart', ['as' => 'getclearcart', 'uses' => 'ShoppingCartController@getClearCart']);
+Route::get('/cart', ['as' => 'getCart', 'uses' => 'FrontEnd\ShoppingCartController@getCart']);
+Route::post('/cart', ['as' => 'postCart', 'uses' => 'FrontEnd\ShoppingCartController@postCart']);
+Route::post('editcart', ['as' => 'postEditCart', 'uses' => 'FrontEnd\ShoppingCartController@postEditCart']);
+Route::get('detelecart/{id}', ['as' => 'postDelCart', 'uses' => 'FrontEnd\ShoppingCartController@getDelCart']);
+Route::post('color-size-soluong', ['as' => 'color-size-soluong', 'uses' => 'FrontEnd\ShoppingCartController@getCountPro']);
+Route::get('clearcart', ['as' => 'getclearcart', 'uses' => 'FrontEnd\ShoppingCartController@getClearCart']);
 
-Route::get('detelecart/{id}', ['as' => 'postDelCart', 'uses' => 'ShoppingCartController@getDelCart']);
+Route::get('detelecart/{id}', ['as' => 'postDelCart', 'uses' => 'FrontEnd\ShoppingCartController@getDelCart']);

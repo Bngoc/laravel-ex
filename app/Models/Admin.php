@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace app\Models;
 
 //use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +15,7 @@ class Admin extends Authenticatable
 
     public function product()
     {
-        return $this->hasMany('App\Product');
+        return $this->hasMany('App\Models\Product');
     }
 
     // protected static function auth()

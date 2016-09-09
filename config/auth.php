@@ -77,19 +77,19 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => 'App\User',
+            'model' => 'App\Models\User',
             'table'  => 'users',
         ],
 
         // 'cusers' => [
         //     'driver' => 'eloquent',
-        //     'model' => 'App\User',
+        //     'model' => 'App\Models\User',
         //     'table'  => 'users',
         // ],
 
         'admins' => [
             'driver' => 'eloquent',
-            'model' => 'App\User',
+            'model' => 'App\Models\User',
             'table'  => 'users',
         ],
     ],

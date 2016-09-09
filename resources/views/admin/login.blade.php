@@ -175,7 +175,7 @@
             
             loader('on');
             $.post(url, login_form, function (data) {
-                //console.log(data);
+//                console.log(data);
                 loader('off');
                 $('.error-none').hide();
                 if(data['_key'] == '_fail'){

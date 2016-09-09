@@ -45,7 +45,7 @@
                     <td>{!! \Carbon\Carbon::createFromTimeStamp(strtotime($val['created_at']))->diffForHumans() !!}</td>
                     <td>{!! \Carbon\Carbon::createFromTimeStamp(strtotime($val['updated_at']))->diffForHumans() !!}</td>
                     <td>
-                        <?php //$cate = App\Cate::findorFail($val['cate_id']);
+                        <?php //$cate = App\Models\Cate::findorFail($val['cate_id']);
                         $cate = DB::table('cates')->where('id', $val['cate_id'])->first();  ?>
                         @if($cate)
                             {!! $cate->name !!}

@@ -1,5 +1,5 @@
 <?php
-namespace app\Http\Controllers;
+namespace app\Http\Controllers\Admin;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 // goi namespace requests
 use App\Http\Requests\CateRequest;
 // goi namespace mode cate
-use App\Cate;
+use App\Models\Cate;
 
 class CateController extends Controller
 {

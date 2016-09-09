@@ -1,6 +1,6 @@
 <?php
 
-namespace App\User;
+namespace App\Models\User;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,10 +12,10 @@ class ProductColor extends Model
 
     public function color_product()
     {
-        return $this->belongsTo('App\Product', 'product_id');
+        return $this->belongsTo('App\Models\Product', 'product_id');
     }
     public function color_soluong()
     {
-        return $this->hasMany('App\User\ProductCount', 'color_id');
+        return $this->hasMany('App\Models\User\ProductCount', 'color_id');
     }
 }

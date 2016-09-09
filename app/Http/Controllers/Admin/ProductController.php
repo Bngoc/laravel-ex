@@ -1,30 +1,23 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 //use Illuminate\Http\Request; // dung ajax thi ko dung ma dung use Request;
 use Request;
-use App\Cate;
-use App\Product;
-use App\User\ProductColor;
-use App\User\ProductSize;
-use App\User\ProductCount;
-use App\ProductImage;
+use App\Models\Cate;
+use App\Models\Product;
+use App\Models\User\ProductColor;
+use App\Models\User\ProductSize;
+use App\Models\User\ProductCount;
+use App\Models\ProductImage;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\EditProductRequest;
 use Input;
 use File;
 use DB;
-use App\User;
+use App\Models\User;
 
-//use Auth;
-
-/* Nếu dùng SRC thì khi chuyển ca
-/
-/
-/
-*/
 
 class ProductController extends Controller
 {

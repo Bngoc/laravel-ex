@@ -12,7 +12,7 @@
             <h1 class="heading1"><span class="maintext"> Shopping Cart</span><span class="subtext"> All items in your  Shopping Cart</span>
             </h1>
             <!-- Cart-->
-            <a class="pull-right" href="{{action('ShoppingCartController@getClearCart')}}">Clear Shopping Cart</a>
+            <a class="pull-right" href="{{action('FrontEnd\ShoppingCartController@getClearCart')}}">Clear Shopping Cart</a>
             <div class="cart-info">
                 <table class="table table-striped table-bordered">
                     <tr>
@@ -25,7 +25,7 @@
                         <th style="text-align:center;" class="total">Total</th>
 
                     </tr>
-                    {{--<form method="POST" action="action('ShoppingCartController@postEditCart')">--}}
+                    {{--<form method="POST" action="action('FrontEnd\ShoppingCartController@postEditCart')">--}}
 {{--                        <input type="hidden" name="_token" value="{{csrf_token()}}">--}}
                         @foreach($datacart as $key => $items)
                         <tr>

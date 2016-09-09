@@ -111,7 +111,7 @@
                                                     <div class="pricetag">
                                                         <span class="spiral"></span>
                                                         {{--<a href="#" class="productcart">ADD TO CART</a>--}}
-                                                        <form method="POST" action="{{action('ShoppingCartController@postCart')}}">
+                                                        <form method="POST" action="{{action('FrontEnd\ShoppingCartController@postCart')}}">
                                                             <input type="hidden" name="product_id" value="{{$val->id}}">
                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                             <button type="button" class="add-to-cart">

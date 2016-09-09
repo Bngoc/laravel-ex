@@ -1,6 +1,6 @@
 <?php
 
-use App\Cate;
+use App\Models\Cate;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 // Home
