@@ -5,7 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 //use Illuminate\Http\Request;
 
 //use App\Http\Requests;
-use App\Product;
+use App\Models\Product;
 use App\Models\User\ProductCount;
 use App\Models\User\ProductSize;
 use App\Models\User\ProductSoLuong;

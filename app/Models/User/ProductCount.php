@@ -12,14 +12,14 @@ class ProductCount extends Model
 
     public function soluong_size()
     {
-        return $this->belongsTo('App\Modles\User\ProductSize', 'size_id');
+        return $this->belongsTo('App\Models\User\ProductSize', 'size_id');
     }
     public function soluong_color()
     {
-        return $this->belongsTo('App\Modles\User\ProductColor', 'color_id');
+        return $this->belongsTo('App\Models\User\ProductColor', 'color_id');
     }
     public function soluong_product()
     {
-        return $this->belongsTo('App\Modles\Product', 'product_id');
+        return $this->belongsTo('App\Models\Product', 'product_id');
     }
 }
