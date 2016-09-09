@@ -48,7 +48,7 @@ class ProductController extends Controller
         $product->src = $alias['alias'];
         $product->icon = $p_request->txtIcon;
         $product->discount = (int)($p_request->txtDiscount);
-        $p_request->file('fImages')->move('public/upload/' . $alias['alias'], $fname_image);
+        $p_request->file('fImages')->move('g/upload/' . $alias['alias'], $fname_image);
         $product->save();
 
         $product_id = $product->id;
