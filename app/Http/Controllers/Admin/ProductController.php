@@ -18,7 +18,6 @@ use File;
 use DB;
 use App\Models\User;
 
-
 class ProductController extends Controller
 {
     public function getAdd()
