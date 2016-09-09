@@ -1,5 +1,3 @@
 /vendor
 /node_modules
 .env
-/public/admin/js/func_ckfinder.js
-/public/admin/js/ckfinder/config.php

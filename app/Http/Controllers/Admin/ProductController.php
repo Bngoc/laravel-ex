@@ -48,7 +48,7 @@ class ProductController extends Controller
         $product->src = $alias['alias'];
         $product->icon = $p_request->txtIcon;
         $product->discount = (int)($p_request->txtDiscount);
-        $p_request->file('fImages')->move('g/upload/' . $alias['alias'], $fname_image);
+        $p_request->file('fImages')->move(public_path(). '/upload/' . $alias['alias'], $fname_image);
         $product->save();
 
         $product_id = $product->id;
@@ -63,7 +63,7 @@ class ProductController extends Controller
 
                     //$product_img->image = $_file->getClientOriginalName();
                     $product_img->product_id = $product_id;
-                    $_file->move('public/upload/detail/' . $alias['alias'], $file_name);
+                    $_file->move(public_path() . '/upload/detail/' . $alias['alias'], $file_name);
                     $product_img->save();
                 }
             }
@@ -163,10 +163,10 @@ class ProductController extends Controller
 
         foreach ($product_detail as $value) {
             // ... xóa file ảnh (tên trong bảng Product_images) có trong đường dẫn ...
-            File::delete('public/upload/detail/' . $_product->src .'/'. $value['image']);
+            File::delete(public_path() . '/upload/detail/' . $_product->src .'/'. $value['image']);
         }
        
-        File::delete('public/upload/' . $_product->src .'/'. $_product->image);
+        File::delete(public_path() . '/upload/' . $_product->src .'/'. $_product->image);
         // xóa file ảnh chính
         // xóa với $_id trong bảng Product và Cate_id=$_id
         // trong bảng Product_images với quan hệ 1-N (Model hasMany)
@@ -208,7 +208,7 @@ class ProductController extends Controller
     public function postEdit(EditProductRequest $req, $id)
     {
         $product = Product::find($id);
-        $img_current = 'public/upload/' . $product->src .'/'. $product->image;
+        $img_current = public_path(). '/upload/' . $product->src .'/'. $product->image;
         
         $product->name = $req->txtName;
         $product->alias = changTitle($req->txtName);
@@ -228,7 +228,7 @@ class ProductController extends Controller
             $file_name = $product->src . "-" . substr(md5(rand()), 0, 7) . "." . $ext_file;
 
             $product->image = $file_name;
-            Request::file('fImages')->move('public/upload/' . $product->src .'/', $file_name);
+            Request::file('fImages')->move(public_path() . '/upload/' . $product->src .'/', $file_name);
             if (File::exists($img_current)) {
                 File::delete($img_current);
             }
@@ -245,7 +245,7 @@ class ProductController extends Controller
                     $product_img->image = $file_images;
                     //$product_img->image = $val->getClientOriginalName();
                     $product_img->product_id = $id;
-                    $val->move('public/upload/detail/' . $product->src . '/', $file_images);
+                    $val->move(public_path(). '/upload/detail/' . $product->src . '/', $file_images);
                     $product_img->save();
                 }
             }
@@ -276,7 +276,7 @@ class ProductController extends Controller
         if (Input::has('colorold')) {
 
             foreach (Input::get('colorold') as $key => $val) {
-                DB::table('Product_colors')
+                DB::table('product_colors')
                     ->where('id', $key)
                     ->update(['namecolor' => $val]);
             }
@@ -356,13 +356,14 @@ class ProductController extends Controller
             $product = Product::findOrFail($img_detail->product_id);
 
             if ($img_detail) {
-                $img = 'public/upload/detail/' . $product->src . '/' . $img_detail->image;
-                if (File::exists($img)) {
+                $img = public_path() . '/upload/detail/' . $product->src . '/' . $img_detail->image;
+                if (File::exists($img)) {;
                     File::delete($img);
                     $img_detail->delete();
+                    return 'Oke';
                 }
 
-                return 'Oke';
+                return 'false';
             }
         }
     }
