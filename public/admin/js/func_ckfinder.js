@@ -5,7 +5,7 @@ function ckeditor(name) {
         filebrowserImageBrowseUrl: baseURL + '/public/admin/js/ckfinder/ckfinder.html?Type=Images',
         filebrowserFlashBrowseUrl: baseURL + '/public/admin/js/ckfinder/ckfinder.html?Type=Flash',
         filebrowserImageUploadUrl: baseURL + '/public/admin/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-        filebrowserFlashUploadUrl: baseURL + '/admin/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+        filebrowserFlashUploadUrl: baseURL + '/public/admin/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
         toolbar: [
             ['Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates'],
             ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print'],
