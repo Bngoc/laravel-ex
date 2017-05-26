@@ -121,6 +121,7 @@ class AuthController extends Controller
 
     public function postRegister(UserRegisterRequest $request)
     {
+        dd($request);
         $result = array(
             'username' => $request->username,
             'email' => $request->email,
