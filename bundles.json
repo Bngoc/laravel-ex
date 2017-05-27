@@ -1,0 +1,107 @@
+{
+  "styles": {
+    "main": {
+      "files": [
+        "bootstrap.min",
+        "font-awesome",
+        "animate.min",
+        "prettyPhoto",
+        "main",
+        "responsive",
+        "custom"
+      ],
+      "output": "site.min.css",
+      "dir": "css"
+    },
+    "admin_main": {
+      "files": [
+        "admin/bootstrap",
+        "admin/font-awesome.min",
+        "admin/font-awesome.min",
+        "admin/ionicons.min",
+        "admin/morris/morris",
+        "admin/jvectormap/jquery-jvectormap-1.2.2",
+        "admin/fullcalendar/fullcalendar",
+        "admin/daterangepicker/daterangepicker-bs3",
+        "admin/bootstrap-wysihtml5/bootstrap3-wysihtml5.min",
+        "admin/AdminLTE",
+        "jquery-ui",
+        "admin/custom_admin"
+      ],
+      "output": "site.min.css",
+      "dir": "css"
+    }
+  },
+  "scripts": {
+    "main": {
+      "files": [
+        "jquery.min",
+        "html5shiv",
+        "respond.min",
+        "bootstrap.min",
+        "jquery.prettyPhoto",
+        "jquery.isotope.min",
+        "wow.min",
+        "main"
+      ],
+      "output": "site.min.js",
+      "dir": "js"
+    },
+    "admin_main": {
+      "files": [
+        "admin/jquery.min",
+        "admin/jquery-ui-1.10.3.min",
+        "admin/bootstrap.min",
+        "admin/jquery-ui",
+        "main",
+        "admin/loadjs",
+        "admin/plugins/morris/morris.min",
+        "admin/plugins/sparkline/jquery.sparkline.min",
+        "admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min",
+        "admin/plugins/jvectormap/jquery-jvectormap-world-mill-en",
+        "admin/plugins/fullcalendar/fullcalendar.min",
+        "admin/plugins/jqueryKnob/jquery.knob",
+        "admin/plugins/daterangepicker/daterangepicker",
+        "admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min",
+        "admin/plugins/iCheck/icheck.min",
+        "admin/AdminLTE/app",
+        "admin/AdminLTE/demo",
+        "admin/raphael-min"
+
+      ],
+      "output": "company.min.js",
+      "dir": "js"
+    },
+    "mediaid_main": {
+      "files": [
+        "jquery.min.js",
+        "angular.min.js",
+        "ng-file-upload-shim.min.js",
+        "ng-file-upload.min.js",
+        "moment.min.js",
+        "bootstrap.min.js",
+        "toastr.min.js",
+        "metisMenu.js",
+        "sb-admin-2.js",
+        "jquery.datetimepicker.full.min.js",
+        "select2.full.min.js",
+        "linq.min.js",
+        "common.js",
+        "app.lang-jp.js",
+        "ajax.js",
+        "app.js",
+        "mediaid_controllers/MainController.js",
+        "mediaid_controllers/MediaidsController.js",
+        "mediaid_controllers/CertificatesController.js",
+        "mediaid_controllers/AuthControllers.js",
+        "jquery.validate.js",
+        "jquery.form.js",
+        "makers/maker.js",
+        "beacon/beacon.js",
+        "jquery.autocomplete.js"
+      ],
+      "output": "mediaid.min.js",
+      "dir": "public/js"
+    }
+  }
+}

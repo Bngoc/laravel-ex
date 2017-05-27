@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Khóa Học Lập Trình Laravel Framework 5.x Tại Khoa Phạm">
+    <meta name="description" content="">
     <meta name="author" content="Vu Quoc Tuan">
-
     <title>{!! @title !!}</title>
 
-    <!-- Bootstrap Core CSS -->
+{{--    {!!\App\Mylib\Bundle::styles('admin_main') !!}--}}
+
+<!-- Bootstrap Core CSS -->
     <link href="{{ url('admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
@@ -19,8 +20,8 @@
     <link href="{{ url('admin/dist/css/sb-admin-2.css') }}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{{ url('admin/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"
-          type="text/css">
+    <link href="{{ url('admin/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('css/rawcss.css') }}" rel="stylesheet" type="text/css">
 
     <style type="text/css">
         .error {
@@ -33,7 +34,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-5 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-lock"></i> Please Sign In</h3>
@@ -57,25 +58,28 @@
                                        value="">
                                 <span style="color:red; display:none" class="error-none error-pass"></span>
                             </div>
-                            <div class="form-inline">
-                                <!-- <div class="input-group col-md-12"> -->
-                                <div class="form-group checkbox inline col-md-4">
-                                    <label class="form-group btn btn-link">
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                                <div class="form-group pull-right">
-                                    <a class="btn btn-link" href="{{ url('password/email') }}">Forgot YourPassword?</a>
-                                </div>
-                                <!-- </div> -->
-                            </div>
                             <div class="form-group">
-                                <div class="col-md-12">
-                                    <button type="button" id="sign_id" class="btn btn-lg btn-block btn-primary">Login</button>
+                                <div class="form-inline">
+                                    <div class="col-md-6 pull-left inline pd-none">
+                                        <label class="btn btn-link pd-l15">
+                                            <input type="checkbox" name="remember"> Remember Me
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 pull-right">
+                                        <a class="btn btn-link" href="{{ url('password/email') }}">Forgot
+                                            YourPassword?</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group">
+                                <div class="col-md-12 pd-none">
+                                    <button type="button" id="sign_id" class="btn btn-lg btn-block btn-primary">Login
+                                    </button>
                                     <!-- Dùng ajax không sử dụng type="submint" -->
                                     <!-- <button type="submit" id="sign_id" class="btn btn-block btn-primary">Login</button> -->
 
-                                    <!-- <a class="btn btn-link pull-left" href="{{ url('/auth/register') }}">Register</a> -->
+                                <!-- <a class="btn btn-link pull-left" href="{{ url('/auth/register') }}">Register</a> -->
                                 </div>
                             </div>
 
@@ -157,37 +161,37 @@
 
         //var _name = $("input[name='user']").val();
         //var _pass = $("input[name='user']").val();
-         // $('button[type="button"]').prop('disabled', true);
-         // $('input[type="text"]').keyup(function() {
-         //    if($(this).val() != '') {
-         //       $('button[type="button"]').prop('disabled', false);
-         //    }
-         // })
+        // $('button[type="button"]').prop('disabled', true);
+        // $('input[type="text"]').keyup(function() {
+        //    if($(this).val() != '') {
+        //       $('button[type="button"]').prop('disabled', false);
+        //    }
+        // })
 
         //alert( _name + _pass);
 
         $("#sign_id").on('click', function (e) {
             e.preventDefault();
-            
+
             //serializeArray [{'name':user, 'value':''}, {'name':password, 'value':''}, ]
             var login_form = $("#login_form").serializeArray();
             var url = $("#login_form").attr('action');
-            
+
             loader('on');
             $.post(url, login_form, function (data) {
 //                console.log(data);
                 loader('off');
                 $('.error-none').hide();
-                if(data['_key'] == '_fail'){
-                   
-                    if(data._info.user != undefined){
+                if (data['_key'] == '_fail') {
+
+                    if (data._info.user != undefined) {
                         $('.error-usesname').show().text(data._info.user[0]);
                     }
-                    if(data._info.password != undefined){
+                    if (data._info.password != undefined) {
                         $('.error-pass').show().text(data._info.password[0]);
                     }
                 } else {
-                    if(data['_key'] == 'fail') {
+                    if (data['_key'] == 'fail') {
                         $('#msg').text(data['info']);
                         $('#cfk').addClass('alert alert-danger').fadeIn(2000, function () {
                             $(this).hide();
