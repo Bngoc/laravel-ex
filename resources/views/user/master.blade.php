@@ -15,7 +15,7 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <!-- fav -->
-    <link rel="shortcut icon" href="{!! URL('/user/assets/ico/favicon.html') !!}">
+    <link rel="shortcut icon" href="{!! URL('/images/favicon/favicon.html') !!}">
     <script type="text/javascript">
         var baseURL = "{!! url('/') !!}";
     </script>

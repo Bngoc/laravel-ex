@@ -11,7 +11,7 @@
 |
 */
 
-View::share('title', 'Admin - Khoa Phạm');
+View::share('title', 'Admin - WebShop');
 
 Route::get('/admin/dashboard', ['as'=>'admin.dashboard', 'uses'=>'Admin\AdminController@index']);
 
