@@ -104,7 +104,7 @@
 <script src="{{ url('admin/dist/js/sb-admin-2.js') }}"></script>
 
 <!-- Validator -form -->
-<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
 
 <script type="text/javascript">
     function loader(v) {
