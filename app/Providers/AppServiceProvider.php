@@ -1,6 +1,7 @@
 <?php namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Providers\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Validator::extend('isnotname', function($attribute, $value, $parameters, $validator) {
+            $valueClone = strtolower($value);
+            return ($valueClone !== 'superadmin' && $valueClone !== 'admin');
+        });
     }
 
     /**

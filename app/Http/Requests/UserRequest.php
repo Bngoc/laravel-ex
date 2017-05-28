@@ -24,7 +24,7 @@ class UserRequest extends Request
     public function rules()
     {
         return [
-            'txtUser' => 'required|unique:users,username',
+            'txtUser' => 'required|isnotname|unique:users,username',
             'txtPass' => 'required',
             'txtRePass' => 'required|same:txtPass',
             'txtEmail' => 'required|unique:users,email|regex:/^[a-z][a-z0-9]*(_[a-z0-9]+)*(\.[a-z0-9]+)*@[a-z0-9]([a-z0-9-][a-z0-9+)*(\.[a-z]{2,4}){1,2}$/',
@@ -36,6 +36,7 @@ class UserRequest extends Request
         return [
             'txtUser.required' => 'Vui lòng nhập tên.',
             'txtUser.unique' => 'Tên đã tồn tại',
+            'txtUser.isnotname' => 'Tên không được phép sử dụng.',
             'txtPass.required' => 'Vui lòng nhập mật khẩu',
             'txtRePass.required' => 'Vui lòng nhập lại mật khẩu',
             'txtRePass.same' => 'Hai mật khẩu không trùng nhau',

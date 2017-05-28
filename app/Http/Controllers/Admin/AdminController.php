@@ -15,6 +15,7 @@ use Illuminate\Contracts\Auth\Guard;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Models\AppModel;
 
 class AdminController extends Controller
 {
@@ -136,7 +137,7 @@ class AdminController extends Controller
     public function postAdd(UserRequest $request)
     {
         $user = new User();
-        $user->username = $request->txtUser;
+        $user->username = strtolower($request->txtUser);
         $user->password = Hash::make($request->txtPass);
         $user->email = $request->txtEmail;
         $user->level = $request->rdoLevel;
@@ -159,7 +160,7 @@ class AdminController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
 
-        return view('admin.user.list', compact('_user'));
+        return \View('admin.user.list', compact('_user'));
     }
 
     public function getDelete($id)
