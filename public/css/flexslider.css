@@ -37,7 +37,7 @@ html[xmlns] .slides { display: block; }
 .carousel li { margin-right: 5px }
 .flexborder { background:#fff; margin-bottom:5px; margin-top:4px }
 /* Direction Nav */
-.flex-direction-nav a { width: 30px; height: 30px; margin: -20px 10px 0 10px; display: block; background: url(../user/img/bg_direction_nav.png) no-repeat 0 0; position: absolute; top: 55%; cursor: pointer; text-indent: -9999px; opacity: 0; -webkit-transition: all .3s ease;
+.flex-direction-nav a { width: 30px; height: 30px; margin: -20px 10px 0 10px; display: block; background: url(../images/img/bg_direction_nav.png) no-repeat 0 0; position: absolute; top: 55%; cursor: pointer; text-indent: -9999px; opacity: 0; -webkit-transition: all .3s ease;
 }
 .flex-direction-nav .flex-next { background-position: 100% 0; right: 0px; }
 .flex-direction-nav .flex-prev { left: 0px; }
