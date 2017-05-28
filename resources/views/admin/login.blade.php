@@ -34,7 +34,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-5 col-md-offset-4">
+        <div class="col-lg-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-lock"></i> Please Sign In</h3>
