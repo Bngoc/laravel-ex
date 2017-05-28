@@ -36,7 +36,7 @@ class AuthController extends Controller
     public function getLogin()
     {
         if (Auth::guard('admin')->check()) {
-            return redirect::route('admin.dashboard');
+            return \Redirect::route('admin.dashboard');
         } else {
             return view('admin.login');
         }

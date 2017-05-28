@@ -5,29 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Vu Quoc Tuan">
+    <meta name="author" content="">
     <title>{!! @title !!}</title>
 
-{{--    {!!\App\Mylib\Bundle::styles('admin_main') !!}--}}
+    {!!\App\Mylib\Bundle::styles('admin_main') !!}
+    {!!\App\Mylib\Bundle::scripts('admin_main') !!}
 
-<!-- Bootstrap Core CSS -->
-    <link href="{{ url('admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="{{ url('admin/bower_components/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{{ url('admin/dist/css/sb-admin-2.css') }}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{{ url('admin/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url('css/rawcss.css') }}" rel="stylesheet" type="text/css">
-
-    <style type="text/css">
-        .error {
-            color: #F44336;
-        }
-    </style>
 </head>
 
 <body>
@@ -90,21 +73,6 @@
         </div>
     </div>
 </div>
-
-<!-- jQuery -->
-<script src="{{ url('admin/bower_components/jquery/dist/jquery.min.js') }}"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ url('admin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="{{ url('admin/bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="{{ url('admin/dist/js/sb-admin-2.js') }}"></script>
-
-<!-- Validator -form -->
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
 
 <script type="text/javascript">
     function loader(v) {

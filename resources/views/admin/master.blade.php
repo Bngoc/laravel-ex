@@ -4,41 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="----------------------------">
-    <meta name="author" content="Vu Quoc Tuan">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title></title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{!! url('/admin/bower_components/bootstrap/dist/css/bootstrap.min.css') !!}" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="{!! url('/admin/bower_components/metisMenu/dist/metisMenu.min.css') !!}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{!! url('/admin/dist/css/sb-admin-2.css') !!}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="{!! url('/admin/bower_components/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet"
-          type="text/css">
-
-    <!-- DataTables CSS -->
-    <link href="{!! url('/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') !!}"
-          rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="{!! url('admin/bower_components/datatables-responsive/css/dataTables.responsive.css') !!}"
-          rel="stylesheet">
-
-    <!--CKeditor $ CKfinder -->
-    <script src="{!! url('/admin/js/ckeditor/ckeditor.js') !!}"></script>
-    <script src="{!! url('/admin/js/ckfinder/ckfinder.js') !!}"></script>
+    {!!\App\Mylib\Bundle::styles('admin_main') !!}
     <script type="text/javascript">
         var baseURL = "{!! url('/') !!}";
     </script>
-    <script src="{!! url('/admin/js/func_ckfinder.js') !!}"></script>
-    <!-- En Ckeditor && CKfinder-->
-    
+    {!!\App\Mylib\Bundle::scripts('admin_main') !!}
+
 </head>
 
 <body>
@@ -182,31 +158,6 @@
 
 </div>
 <!-- /#wrapper -->
-
-<!-- jQuery -->
-<script src="{!! url('/admin/bower_components/jquery/dist/jquery.min.js') !!}"></script>
-
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{!! url('/admin/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="{!! url('/admin/bower_components/metisMenu/dist/metisMenu.min.js') !!}"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="{!! url('/admin/dist/js/sb-admin-2.js') !!}"></script>
-
-<!-- DataTables JavaScript -->
-<script src="{!! url('/admin/bower_components/datatables/media/js/jquery.dataTables.min.js') !!}"></script>
-<script src="{!! url('/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') !!}"></script>
-
-<!-- Validator form (SAU JQUERY.JS -->
-<!-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script> -->
-<!-- <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script> -->
-<!-- mysrcipt.js -->
-<script src="{!! url('/admin/js/mysrcipt.js') !!}"></script>
-
 </body>
 
 </html>

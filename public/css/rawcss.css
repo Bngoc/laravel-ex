@@ -37,3 +37,7 @@
 .pd-l15 {
     padding-left: 15px !important;
 }
+
+.error {
+    color: #F44336;
+}
