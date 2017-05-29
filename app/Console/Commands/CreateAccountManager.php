@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use \App\Models\AppModel;
 use \App\Models\User;
+use PhpParser\Node\Stmt\Echo_;
 
 class CreateAccountManager extends Command
 {
@@ -13,7 +14,7 @@ class CreateAccountManager extends Command
      *
      * @var string
      */
-    protected $signature = 'CreateAccountManager';
+    protected $signature = 'CreateAccountManager {userName} {option?}';
 
     /**
      * The console command description.
@@ -40,19 +41,42 @@ class CreateAccountManager extends Command
     public function handle()
     {
         set_time_limit(300);
-        $isCheckCount = User::where('level', 1);
 
-         if ($isCheckCount->count() == 0) {
-             // redrice create acc
-             echo $this->info('----- oj');
-         }
-         if ($isCheckCount->count() > 1) {
-             $uers = $isCheckCount->get();
-             $this->info('--------------------------------------------');
-             echo $this->error('Account exists in database');
-             $this->info('--------------------------------------------');
-//             dd($uers);
-         }
+        $userN = strtolower($this->argument('userName'));
+//        if (empty($userN)) {
+//            $this->info('--------------------------------------------');
+//            echo $this->error('Input userName a account');
+//            $this->info('--------------------------------------------');
+//            exit();
+//        }
+        $isAtc = false;
+        $optAcl = strtolower($this->option());
+        if ($optAcl == 's') {
+            $isAtc = true;
+            $levelAcl = \App\Models\AppModel::ACCESS_SUPERADMIN_ACTION;
+        } elseif ($optAcl == 'a') {
+            $levelAcl = \App\Models\AppModel::ACCESS_ADMIN_ACTION;
+        } else {
+            $levelAcl = \App\Models\AppModel::ACCESS_MEMBER_ACTION;
+        }
+
+        if ($isAtc) {
+            $isCheckCount = User::where('level', \App\Models\AppModel::ACCESS_SUPERADMIN_ACTION);
+
+            if ($isCheckCount->count() == 0) {
+                // redrice create acc\
+                $isAtc = true;
+                echo $this->info('----- oj');
+            }
+            if ($isCheckCount->count() >= 1) {
+                $this->info('--------------------------------------------');
+                echo $this->error('UserName not use');
+                $this->info('--------------------------------------------');
+                exit();
+            }
+        } else {
+
+        }
 
         $timeCurrent = date('Y-m-d H:i:s', time());
         $timePrevious = date('Y-m-d H:i:s', strtotime('-1 days', time()));
