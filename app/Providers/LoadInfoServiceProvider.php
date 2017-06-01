@@ -17,7 +17,7 @@ class LoadInfoServiceProvider extends ServiceProvider
     {
         $user = User::where('level', AppModel::ACCESS_SUPERADMIN_ACTION);
         if ($user->count() >= 1) {
-            $userIsResgister = $user->list('id')->firstOrFail();
+            $userIsResgister = $user->firstOrFail();
             die($userIsResgister);
         }
 
