@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use \App\Models\AppModel;
 use \App\Models\User;
+use \app\Console\Commands\Hash;
 use PhpParser\Node\Stmt\Echo_;
 
 class CreateAccountManager extends Command
@@ -14,7 +15,7 @@ class CreateAccountManager extends Command
      *
      * @var string
      */
-    protected $signature = 'CreateAccountManager {userName} {option?}';
+    protected $signature = 'CreateAccountManager {userName} {--s}';
 
     /**
      * The console command description.
@@ -41,42 +42,66 @@ class CreateAccountManager extends Command
     public function handle()
     {
         set_time_limit(300);
-
-        $userN = strtolower($this->argument('userName'));
+        $user = new User();
+        $user->username = $userN = strtolower($this->argument('userName'));
 //        if (empty($userN)) {
 //            $this->info('--------------------------------------------');
 //            echo $this->error('Input userName a account');
 //            $this->info('--------------------------------------------');
 //            exit();
 //        }
-        $isAtc = false;
-        $optAcl = strtolower($this->option());
-        if ($optAcl == 's') {
-            $isAtc = true;
-            $levelAcl = \App\Models\AppModel::ACCESS_SUPERADMIN_ACTION;
-        } elseif ($optAcl == 'a') {
-            $levelAcl = \App\Models\AppModel::ACCESS_ADMIN_ACTION;
-        } else {
-            $levelAcl = \App\Models\AppModel::ACCESS_MEMBER_ACTION;
-        }
 
-        if ($isAtc) {
+        if ($this->option('s')) {
+
             $isCheckCount = User::where('level', \App\Models\AppModel::ACCESS_SUPERADMIN_ACTION);
-
-            if ($isCheckCount->count() == 0) {
-                // redrice create acc\
-                $isAtc = true;
-                echo $this->info('----- oj');
-            }
-            if ($isCheckCount->count() >= 1) {
+            if ($isCheckCount->count() > 1) {
                 $this->info('--------------------------------------------');
                 echo $this->error('UserName not use');
+                $this->info('--------------------------------------------');
+                exit();
+            } elseif ($isCheckCount->count() == 0) {
+                // redrice create acc\
+                $pwdCreate = $this->secret('What is the password?');
+                if (strlen($pwdCreate) < 6) {
+                    $this->comment('--------------------------------------------');
+                    //$this->call('CreateAccountManager', ['userName' => $userN, '--s' => '--s']);
+                    exit($this->error('Error -> Password lengh min 6 character!'));
+                }
+                $pwdCreateClone = $this->secret('Confirm password?');
+
+                if ($pwdCreateClone !== $pwdCreate) {
+                    $this->info('--------------------------------------------');
+                    echo $this->error('Error -> Confirmation password do not match');
+                    $this->info('--------------------------------------------');
+                    exit();
+                }
+                $user->email = $email = $this->ask("What is the email?");
+                $user->level = $aclLevel = \App\Models\AppModel::ACCESS_SUPERADMIN_ACTION;
+                $user->password = \Hash::make($pwdCreateClone);
+                $user->save();
+            } else {
+                $this->info('--------------------------------------------');
+                echo $this->info('Info -> Run not task');
                 $this->info('--------------------------------------------');
                 exit();
             }
         } else {
 
         }
+//        if ($optAcl == 's') {
+//            $isAtc = true;
+//            $levelAcl = \App\Models\AppModel::ACCESS_SUPERADMIN_ACTION;
+//        } elseif ($optAcl == 'a') {
+//            $levelAcl = \App\Models\AppModel::ACCESS_ADMIN_ACTION;
+//        } else {
+//            $levelAcl = \App\Models\AppModel::ACCESS_MEMBER_ACTION;
+//        }
+
+//        if ($isAtc) {
+
+//        } else {
+//            $this->info('--------------------------------------------');
+//        }
 
         $timeCurrent = date('Y-m-d H:i:s', time());
         $timePrevious = date('Y-m-d H:i:s', strtotime('-1 days', time()));
