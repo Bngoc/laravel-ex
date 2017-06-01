@@ -52,7 +52,6 @@ class CreateAccountManager extends Command
 //        }
 
         if ($this->option('s')) {
-
             $isCheckCount = User::where('level', \App\Models\AppModel::ACCESS_SUPERADMIN_ACTION);
             if ($isCheckCount->count() > 1) {
                 $this->info('--------------------------------------------');
@@ -75,7 +74,8 @@ class CreateAccountManager extends Command
                     $this->info('--------------------------------------------');
                     exit();
                 }
-                $user->email = $email = $this->ask("What is the email?");
+                $user->email = env('MAIL_USERNAME') ? env('MAIL_USERNAME') : 'admin@123.com';
+//                $user->email = $email = $this->ask("What is the email?");
                 $user->level = $aclLevel = \App\Models\AppModel::ACCESS_SUPERADMIN_ACTION;
                 $user->password = \Hash::make($pwdCreateClone);
                 $user->save();

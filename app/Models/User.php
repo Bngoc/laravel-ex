@@ -36,9 +36,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     protected $guard = "admins";
 
-    const ACL_LEVEL_SUPERADMIN = 1;
-    const ACL_LEVEL_ADMIN = 2;
-    const ACL_LEVEL_MEMBER = 3;
+//    const ACL_LEVEL_SUPERADMIN = 1;
+//    const ACL_LEVEL_ADMIN = 2;
+//    const ACL_LEVEL_MEMBER = 3;
 
     public function product()
     {
@@ -79,6 +79,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             'created_at' => $_user->created_at,
             'updated_at' => $_user->updated_at,
         ];
+
         return $obj;
     }
 }

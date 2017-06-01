@@ -14,6 +14,7 @@ use Input;
 use Response;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\AppModel;
 
 class AuthController extends Controller
 {
@@ -75,7 +76,7 @@ class AuthController extends Controller
             $login = array(
                 'username' => Input::get('user'),
                 'password' => Input::get('password'),
-                'level' => User::ACL_LEVEL_SUPERADMIN,
+                'level' => AppModel::ACCESS_SUPERADMIN_ACTION,
             );
 
             // if (Auth::guard('web')->attempt($login)) {
