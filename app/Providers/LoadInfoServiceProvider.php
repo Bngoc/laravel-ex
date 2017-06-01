@@ -15,12 +15,13 @@ class LoadInfoServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $user = User::where('level', AppModel::ACCESS_SUPERADMIN_ACTION);
-        if ($user->count() >= 1) {
-            $userIsResgister = $user->firstOrFail();
-            die($userIsResgister);
-        }
-
+        view()->composer(['isAdmin',], function($view) {
+            $user = User::where('level', AppModel::ACCESS_SUPERADMIN_ACTION);
+            if ($user->count() >= 1) {
+                $userIsResgister = $user->firstOrFail();
+                die($userIsResgister);
+            }
+        });
     }
 
     /**
