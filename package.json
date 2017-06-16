@@ -23,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/Bngoc/laravel-ex/issues"
   },
-  "homepage": "https://github.com/Bngoc/laravel-ex#readme"
+  "homepage": "https://github.com/Bngoc/laravel-ex#readme",
+  "dependencies": {
+    "express.io": "^1.1.13",
+    "socket.io": "^2.0.3"
+  }
 }
