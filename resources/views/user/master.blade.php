@@ -41,11 +41,61 @@
         <!-- Section Start-->
     @include('user.blocks.ortherdetail')
     <!-- Section End-->
-@endif
+    @endif
 
-@yield('content')
+    @yield('content')
+    <div class="col-md-12">
+        {{--<ul id="messages"></ul>--}}
+        {{--<span id="notifyUser"></span>--}}
+        {{--<form id="form" action="" onsubmit="return submitfunction();">--}}
+        {{--<input type="hidden" id="user" value=""/><input id="m" autocomplete="off" onkeyup="notifyTyping();"--}}
+        {{--placeholder="Type yor message here.."/>--}}
+        {{--<input type="button" id="button" value="Send"/>--}}
+        {{--</form>--}}
+        <div class="col-lg-8">
+            <div id="messages"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-8">
+            <form action="sendmessage" method="POST">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="user" value="gdss">
+                <textarea class="form-control msg"></textarea>
+                <br/>
+                <input type="button" value="Send" class="btn btn-success send-msg">
+            </form>
+        </div>
+        <script>
+            var socket = io.connect('http://www.laravel-ex.lo:3000');
+            socket.on('message', function (data) {
+                data = jQuery.parseJSON(data);
+                console.log(data.user);
+                $("#messages").append("<strong>" + data.user + ":</strong><p>" + data.message + "</p>");
+            });
 
-<!-- Footer -->
+            $(".send-msg").click(function (e) {
+                e.preventDefault();
+                var token = $("input[name='_token']").val();
+                var user = $("input[name='user']").val();
+                var msg = $(".msg").val();
+                if (msg != '') {
+                    $.ajax({
+                        type: "POST",
+                        url: '{!! URL::to("sendmessage") !!}',
+                        dataType: "json",
+                        data: {'_token': token, 'message': msg, 'user': user},
+                        success: function (data) {
+                            console.log(data);
+                            $(".msg").val('');
+                        }
+                    });
+                } else {
+                    alert("Please Add Message.");
+                }
+            })
+        </script>
+    </div>
+    <!-- Footer -->
 @include('user.blocks.footer')
 <!-- javascript -->
 </div>

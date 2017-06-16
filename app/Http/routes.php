@@ -136,5 +136,7 @@ Route::post('editcart', ['as' => 'postEditCart', 'uses' => 'FrontEnd\ShoppingCar
 Route::get('detelecart/{id}', ['as' => 'postDelCart', 'uses' => 'FrontEnd\ShoppingCartController@getDelCart']);
 Route::post('color-size-soluong', ['as' => 'color-size-soluong', 'uses' => 'FrontEnd\ShoppingCartController@getCountPro']);
 Route::get('clearcart', ['as' => 'getclearcart', 'uses' => 'FrontEnd\ShoppingCartController@getClearCart']);
-
 Route::get('detelecart/{id}', ['as' => 'postDelCart', 'uses' => 'FrontEnd\ShoppingCartController@getDelCart']);
+
+//Chat user
+Route::post('sendmessage', 'FrontEnd\ChatController@sendMessage');
