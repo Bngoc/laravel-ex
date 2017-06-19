@@ -66,7 +66,8 @@
             </form>
         </div>
         <script>
-            var socket = io.connect('http://www.laravel-ex.lo:3000');
+            var hostName = window.location.protocol + "//" + window.location.host + ":8080";
+            var socket = io.connect(hostName);
             socket.on('message', function (data) {
                 data = jQuery.parseJSON(data);
                 console.log(data.user);
