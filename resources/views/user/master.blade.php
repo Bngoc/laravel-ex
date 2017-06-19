@@ -44,6 +44,9 @@
     @endif
 
     @yield('content')
+
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
     <div class="col-md-12">
         {{--<ul id="messages"></ul>--}}
         {{--<span id="notifyUser"></span>--}}

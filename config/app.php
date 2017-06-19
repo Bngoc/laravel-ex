@@ -195,7 +195,7 @@ return [
         'Input'     => Illuminate\Support\Facades\Input::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
         'HTML' =>  Collective\Html\HtmlFacade::class,
-        'Cart'    => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'Cart'    => Gloudemans\Shoppingcart\Facades\Cart::class
     ],
 
 ];

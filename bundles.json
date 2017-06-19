@@ -32,7 +32,6 @@
         "jquery.js",
         "bootstrap.js",
         "respond.min.js",
-        "socket.io-1.2.0.js",
         "application.js",
         "bootstrap-tooltip.js",
         "jquery.fancybox.js",
@@ -45,8 +44,7 @@
         "jquery.touchSwipe.min.js",
         "jquery.ba-throttle-debounce.min.js",
         "custom.js",
-        "my_srcipt.js",
-        "chat.js"
+        "my_srcipt.js"
       ],
       "output": "site.min.js",
       "dir": "js"
