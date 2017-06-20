@@ -27,6 +27,7 @@
   "dependencies": {
     "express.io": "^1.1.13",
     "path": "^0.12.7",
+    "redis": "^2.7.1",
     "socket.io": "^2.0.3"
   }
 }
