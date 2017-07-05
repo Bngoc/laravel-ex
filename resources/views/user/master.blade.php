@@ -45,6 +45,13 @@
 
     @yield('content')
 
+    <!--AngularJS-->
+    {{HTML::script("https://code.angularjs.org/1.2.13/angular.js")}}
+    {{HTML::script("//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.js")}}
+    {{HTML::script("//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-sanitize.js")}}
+    {{HTML::script("//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js")}}
+
+    <!--Socket.io-->
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
     <div class="col-md-12">
