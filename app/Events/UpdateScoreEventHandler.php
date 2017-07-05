@@ -2,22 +2,22 @@
 
 namespace App\Events;
 
-use App\Events\Event;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+//use App\Events\Event;
+//use Illuminate\Queue\SerializesModels;
+//use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class UpdateScoreEventHandler extends Event
 {
-    use SerializesModels;
+//    use SerializesModels;
 
-    CONST EVENT = 'score.update';
-    CONST CHANNEL = 'score.update';
-
-    public function handle($data)
-    {
-        $redis = Redis::connection();
-        $redis->publish(self::CHANNEL, $data);
-    }
+//    CONST EVENT = 'score.update';
+//    CONST CHANNEL = 'score.update';
+//
+//    public function handle($data)
+//    {
+//        $redis = Redis::connection();
+//        $redis->publish(self::CHANNEL, $data);
+//    }
 
     /**
      * Create a new event instance.
