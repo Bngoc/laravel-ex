@@ -32,7 +32,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var redis = require('redis');
 
-var listen = server.listen(8080, function () {
+var listen = server.listen(7777, function () {
     console.log('listening on:' + listen.address().port);
 });
 
