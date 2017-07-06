@@ -28,17 +28,18 @@
 // });
 
 var app = require('express')();
-var server = require('http').Server(app);
+var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var redis = require('redis');
 
-var listen = server.listen(7777, function () {
+var listen = server.listen(8080, function () {
     console.log('listening on:' + listen.address().port);
 });
 
 io.on('connection', function (socket) {
 
-    console.log("client connected");
+    console.log("client connected command");
+    // var redisClient = redis.createClient(7777, '127.0.0.1');
     var redisClient = redis.createClient();
     redisClient.subscribe('message');
 

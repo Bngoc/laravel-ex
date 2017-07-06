@@ -4,7 +4,7 @@ namespace App\Http\Controllers\FrontEnd;
 
 use Illuminate\Http\Request;
 use LRedis;
-use App\Http\Requests;
+use Requests;
 use App\Http\Controllers\Controller;
 
 class ChatController extends Controller

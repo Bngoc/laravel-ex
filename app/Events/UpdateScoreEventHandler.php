@@ -36,7 +36,7 @@ class UpdateScoreEventHandler extends Event
      */
     public function broadcastOn()
     {
-        return [];
+        return ['message'];
     }
 }
 //http://www.volkomenjuist.nl/blog/2013/10/20/laravel-4-and-nodejsredis-pubsub-realtime-notifications/

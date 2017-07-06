@@ -77,7 +77,8 @@
         </div>
         <script>
             var hostName = window.location.protocol + "//" + window.location.host + ":8080";
-            var socket = io.connect(hostName);
+            var socket = io.connect(hostName, {transports:['websocket']});
+
             socket.on('message', function (data) {
                 data = jQuery.parseJSON(data);
                 console.log(data.user);
