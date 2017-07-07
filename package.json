@@ -26,6 +26,7 @@
   "homepage": "https://github.com/Bngoc/laravel-ex#readme",
   "dependencies": {
     "express.io": "^1.1.13",
+    "ioredis": "^3.1.1",
     "path": "^0.12.7",
     "redis": "^2.7.1",
     "socket.io": "^2.0.3"
