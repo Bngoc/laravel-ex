@@ -69,7 +69,7 @@
         <div class="col-lg-8">
             <form action="sendmessage" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" name="user" value="gdss">
+                <input type="hidden" name="user" value="buingoc">
                 <textarea class="form-control msg"></textarea>
                 <br/>
                 <input type="button" value="Send" class="btn btn-success send-msg">
@@ -79,9 +79,15 @@
             var hostName = window.location.protocol + "//" + window.location.host + ":8080";
             var socket = io.connect(hostName, {transports:['websocket']});
 
-            socket.on('message', function (data) {
+            socket.on('connect', function(data){
+                //socket.emit('subscribe', {channel:'score.update'});
+                console.log('connected');
+            });
+
+
+            socket.on('msg:App\\Events\\UpdateScoreEventHandler', function (data) {
                 data = jQuery.parseJSON(data);
-                console.log(data.user);
+                console.log('done', data.user);
                 $("#messages").append("<strong>" + data.user + ":</strong><p>" + data.message + "</p>");
             });
 
@@ -97,7 +103,7 @@
                         dataType: "json",
                         data: {'_token': token, 'message': msg, 'user': user},
                         success: function (data) {
-                            console.log(data);
+                            console.log('data Ajax', data);
                             $(".msg").val('');
                         }
                     });

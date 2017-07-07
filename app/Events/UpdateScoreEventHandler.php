@@ -2,31 +2,36 @@
 
 namespace App\Events;
 
-//use App\Events\Event;
-//use Illuminate\Queue\SerializesModels;
-//use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\Events\Event;
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use LRedis;
 
-class UpdateScoreEventHandler extends Event
+class UpdateScoreEventHandler extends Event implements ShouldBroadcast
 {
-//    use SerializesModels;
+    use SerializesModels;
 
-//    CONST EVENT = 'score.update';
-//    CONST CHANNEL = 'score.update';
-//
-//    public function handle($data)
-//    {
-//        $redis = Redis::connection();
-//        $redis->publish(self::CHANNEL, $data);
-//    }
+    CONST EVENT = 'msg';
+    CONST CHANNEL = 'msg';
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+
+    public $data;
+
+
+    public function __construct($array)
     {
-        //
+//        $redis = LRedis::connection();
+//        $redis->publish(self::CHANNEL, $array);
+        $this->data = $array;
     }
 
     /**
@@ -36,7 +41,12 @@ class UpdateScoreEventHandler extends Event
      */
     public function broadcastOn()
     {
-        return ['message'];
+        return ['msg'];
+    }
+
+    public function broadcastAs()
+    {
+        return self::CHANNEL;
     }
 }
 //http://www.volkomenjuist.nl/blog/2013/10/20/laravel-4-and-nodejsredis-pubsub-realtime-notifications/
