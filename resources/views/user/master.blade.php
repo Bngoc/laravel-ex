@@ -70,23 +70,24 @@
             <form action="sendmessage" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="user" value="buingoc">
-                <textarea class="form-control msg"></textarea>
-                <br/>
-                <input type="button" value="Send" class="btn btn-success send-msg">
+                <div class="control-groud">
+                    <textarea id="chat_in" class="form-control msg"></textarea>
+                    <input type="button" value="Send" class="btn btn-success send-msg">
+                </div>
             </form>
+
         </div>
         <script>
             var hostName = window.location.protocol + "//" + window.location.host + ":8080";
-            var sk = io.connect(hostName, {transports: ['websocket', 'polling']});
+            var sk = io.connect(hostName, {transports: ['websocket']});
 
+            $('#chat_in').keypress(function (e) {
+                if (e.which == 13) {
+                    SendData();
+                }
+            });
 
-//            this.sk.on('connect', function (data) {
-//                console.log(sk.emit('subscribe', {channel: 'msg'}));
-//                console.log('connected');
-//            });
-
-            $(".send-msg").click(function (e) {
-                e.preventDefault();
+            function SendData() {
                 var token = $("input[name='_token']").val();
                 var user = $("input[name='user']").val();
                 var msg = $(".msg").val();
@@ -104,6 +105,11 @@
                 } else {
                     alert("Please Add Message.");
                 }
+            }
+
+            $(".send-msg").click(function (e) {
+                e.preventDefault();
+                SendData();
             });
 
             sk.on('message', function (data) {
