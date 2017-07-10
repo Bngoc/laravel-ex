@@ -41,17 +41,17 @@
         <!-- Section Start-->
     @include('user.blocks.ortherdetail')
     <!-- Section End-->
-    @endif
+@endif
 
-    @yield('content')
+@yield('content')
 
-    <!--AngularJS-->
-    {{HTML::script("https://code.angularjs.org/1.2.13/angular.js")}}
-    {{HTML::script("//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.js")}}
-    {{HTML::script("//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-sanitize.js")}}
-    {{HTML::script("//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js")}}
+<!--AngularJS-->
+{{HTML::script("https://code.angularjs.org/1.2.13/angular.js")}}
+{{HTML::script("//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.js")}}
+{{HTML::script("//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-sanitize.js")}}
+{{HTML::script("//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js")}}
 
-    <!--Socket.io-->
+<!--Socket.io-->
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
     <div class="col-md-12">
@@ -77,19 +77,13 @@
         </div>
         <script>
             var hostName = window.location.protocol + "//" + window.location.host + ":8080";
-            var socket = io.connect(hostName, {transports:['websocket']});
-
-            socket.on('connect', function(data){
-                //socket.emit('subscribe', {channel:'score.update'});
-                console.log('connected');
-            });
+            var sk = io.connect(hostName, {transports: ['websocket']});
 
 
-            socket.on('msg:App\\Events\\UpdateScoreEventHandler', function (data) {
-                data = jQuery.parseJSON(data);
-                console.log('done', data.user);
-                $("#messages").append("<strong>" + data.user + ":</strong><p>" + data.message + "</p>");
-            });
+//            this.sk.on('connect', function (data) {
+//                console.log(sk.emit('subscribe', {channel: 'msg'}));
+//                console.log('connected');
+//            });
 
             $(".send-msg").click(function (e) {
                 e.preventDefault();
@@ -110,7 +104,14 @@
                 } else {
                     alert("Please Add Message.");
                 }
-            })
+            });
+
+            sk.on('message', function (data) {
+                console.log(data);
+                data = jQuery.parseJSON(data);
+                console.log('done', data.user);
+                $("#messages").append("<strong>" + data.user + ":</strong><p>" + data.message + "</p>");
+            });
         </script>
     </div>
     <!-- Footer -->

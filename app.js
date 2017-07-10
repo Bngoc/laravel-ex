@@ -1,82 +1,61 @@
-// var app = require('express')();
-// var http = require('http').Server(app);
-// var io = require('socket.io')(http);
-// var path = require('path');
-//
-// // Initialize appication with route / (that means root of the application)
-// app.get('/', function(req, res){
-//     console.log(__dirname);
-//   var express=require('express');
-//   app.use(express.static(path.join(__dirname)));
-//   res.sendFile(path.join(__dirname, '/public', 'index.php'));
-// });
-//
-// // Register events on socket connection
-// io.on('connection', function(socket){
-//   socket.on('chatMessage', function(from, msg){
-//     io.emit('chatMessage', from, msg);
-//   });
-//
-//   socket.on('notifyUser', function(user){
-//     io.emit('notifyUser', user);
-//   });
-// });
-//
-// // Listen application request on port 3000
-// http.listen(8080, function(){
-//   console.log('listening on *:8080');
-// });
-
-var app = require('express')();
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
-// var redis = require('redis');
-
-var Redis = require('ioredis');
-var redis = new Redis(process.env.REDIS_PORT, process.env.REDIS_HOST);
-
-var listen = server.listen(8080, function () {
-    console.log('listening on:' + listen.address().port);
-});
-
 function handler(req, res) {
     res.writeHead(200);
     res.end('');
 }
 
-// io.on('connection', function (socket) {
-//     console.log("client connected command");
-//     var redisClient = redis.createClient(7777, '127.0.0.1');
-//     // var redisClient = redis.createClient();
-//     redisClient.subscribe('msg');
-//
-//     redisClient.on("msg", function(channel, data) {
-//         console.log("mew message add in queue "+ data['message'] + " channel");
-//         socket.emit(channel, data);
-//     });
-//
-//     socket.on('disconnect', function() {
-//         redisClient.quit();
-//     });
-//
-// });
+var app = require('express')();
+var server = require('http').createServer(app);
+// var server = require('http').createServer(handler);
+var io = require('socket.io')(server);
+var redis = require('redis');
 
-// io.on('connection', function(socket) {
-//     socket.emit('msg', {message: "1xxxx", user: "11xxxxxxxxx"});
-//     console.log('client connected')
-// });
+// var Redis = require('ioredis');
+// var redis = new Redis(process.env.REDIS_PORT || 7777, process.env.REDIS_HOST || '127.0.0.1');
 
-redis.on('msg', function(subscribed, channel, message) {
-    message = JSON.parse(message);
-    console.log(message);
-    io.emit(channel + ':' + message.event, message.data);
+io.listen(server).on('connection', function (client) {
+    console.log("client connected command");
+
+    var redisClient = redis.createClient(process.env.REDIS_PORT || 7777, process.env.REDIS_HOST || '127.0.0.1');
+    // var redisClient = redis.createClient();
+
+    redisClient.subscribe('message');
+
+    redisClient.subscribe('*', function (err, count) {
+        console.log("error event - " + redisClient.options.host + ":" + redisClient.options.port + " - " + err);
+    });
+
+    redisClient.on('message', function(channel, data) {
+        console.log("data "+ data + " channel " + channel);
+        client.emit(channel, data);
+    });
+
+    client.on('disconnect', function() {
+        redisClient.quit();
+    });
+
 });
 
-redis.on('msg', function (channel, message) {
+/***  subscribe ***/
+/*
+io.on('connection', function(socket) {
+    socket.emit('msg', {message: "1xxxx", user: "11xxxxxxxxx"});
+    console.log('client connected')
+});
+
+
+redis.subscribe('message');
+
+redis.subscribe('*', function(err, count) {
+    console.log("error event - " + redis.options.host + ":" + redis.options.port + " - " + err);
+});
+
+redis.on('message', function (channel, message) {
+    console.log(channel, message);
     const event = JSON.parse(message);
     io.emit(event.event, channel, event.data);
 });
+*/
 
-redis.subscribe('*', function(err, count) {
-    console.log('error', err, count);
+var listen = server.listen(8080, function () {
+    console.log('listening on:' + listen.address().port);
 });

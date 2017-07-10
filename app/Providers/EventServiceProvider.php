@@ -13,8 +13,11 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'event.name' => [
-            'EventListener',
+            'EventListener'
         ],
+        'msg' => [
+            'App\Events\UpdateScoreEventHandler'
+        ]
     ];
 
     /**
@@ -27,7 +30,6 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        //
     }
 
 }

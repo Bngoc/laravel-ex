@@ -15,8 +15,8 @@ class UpdateScoreEventHandler extends Event implements ShouldBroadcast
 {
     use SerializesModels;
 
-    CONST EVENT = 'msg';
-    CONST CHANNEL = 'msg';
+    CONST EVENT = 'message';
+    CONST CHANNEL = 'message';
 
     /**
      * Create a new event instance.
@@ -24,14 +24,12 @@ class UpdateScoreEventHandler extends Event implements ShouldBroadcast
      * @return void
      */
 
-    public $data;
-
+    public $message;
 
     public function __construct($array)
     {
-//        $redis = LRedis::connection();
-//        $redis->publish(self::CHANNEL, $array);
-        $this->data = $array;
+        LRedis::publish(self::CHANNEL, json_encode($array));
+        $this->message = $array;
     }
 
     /**
@@ -41,7 +39,7 @@ class UpdateScoreEventHandler extends Event implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['msg'];
+        return [self::CHANNEL];
     }
 
     public function broadcastAs()
