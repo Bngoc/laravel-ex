@@ -77,7 +77,7 @@
         </div>
         <script>
             var hostName = window.location.protocol + "//" + window.location.host + ":8080";
-            var sk = io.connect(hostName, {transports: ['websocket']});
+            var sk = io.connect(hostName, {transports: ['websocket', 'polling']});
 
 
 //            this.sk.on('connect', function (data) {
