@@ -78,8 +78,13 @@
 
         </div>
         <script>
-            var hostName = window.location.protocol + "//" + window.location.host + ":8080";
+            var hostName = window.location.protocol + "//" + window.location.hostname + ":8080";
             var sk = io.connect(hostName, {transports: ['websocket']});
+
+            //check connect
+            sk.on('connect', function() {
+                console.log("Connected.");
+            });
 
             $('#chat_in').keypress(function (e) {
                 if (e.which == 13) {

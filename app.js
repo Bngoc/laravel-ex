@@ -57,5 +57,5 @@ redis.on('message', function (channel, message) {
 */
 
 var listen = server.listen(8080, function () {
-    console.log('listening on:' + listen.address().port + ' -- ' + listen);
+    console.log('listening on:' + listen.address().port);
 });
