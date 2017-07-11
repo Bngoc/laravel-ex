@@ -79,7 +79,7 @@
         </div>
         <script>
 //            var hostName = window.location.protocol + '//127.0.0.1' + ":8080");
-            var hostName = window.location.origin + ":8080";
+            var hostName = window.location.origin +  ((window.location.protocol !== 'https:') ? ":8080" : ":8089");
             var sk = io.connect(hostName, {transports: ['websocket']});
 
             //check connect
