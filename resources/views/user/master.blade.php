@@ -80,7 +80,7 @@
         <script>
             var APP_PORT = "<?php echo env('APP_PORT') ?>";
 //            var hostName = window.location.origin + ":" + APP_PORT;
-            var hostName = window.location.protocol + '//127.0.0.1' + ":" + APP_PORT;
+            var hostName = window.location.protocol + '//127.0.0.1' + ":" + APP_PORT || 8080;
             var sk = io.connect(hostName, {transports: ['websocket']});
 
             //check connect
