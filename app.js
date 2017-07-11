@@ -12,7 +12,7 @@ var redis = require('redis');
 // var Redis = require('ioredis');
 // var redis = new Redis(process.env.REDIS_PORT || 7777, process.env.REDIS_HOST || '127.0.0.1');
 
-io.listen(server).on('connection', function (client) {
+io.on('connection', function (client) {
     console.log("client connected command");
 
     var redisClient = redis.createClient(process.env.REDIS_PORT || 7777, process.env.REDIS_HOST || '127.0.0.1');
