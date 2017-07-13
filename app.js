@@ -1,5 +1,11 @@
+//Win
 var ssl_key = "C:/xampp/apache/conf/ssl.key/server.key";
 var ssl_crt = "C:/xampp/apache/conf/ssl.crt/server.crt";
+
+//In Redhat
+//var ssl_key = "/etc/ssl/private/apache-selfsigned.key";
+//var ssl_crt = "/etc/ssl/certs/apache-selfsigned.crt";
+
 
 function handler(req, res) {
     res.writeHead(200);
@@ -10,7 +16,7 @@ function handler(req, res) {
 var app = require('express')();
 var server = require('http').createServer(app);
 // var server = require('http').createServer(handler);
-var io = require('socket.io')(server);
+var io = require('socket.io')(server, {pingTimeout: 7000, pingInterval: 10000});
 var redis = require('redis');
 
 // var Redis = require('ioredis');
@@ -75,7 +81,7 @@ var serverSLL = https.createServer({
     rejectUnauthorized: false
 }, app);
 
-var ioSll = require('socket.io').listen(serverSLL);
+var ioSll = require('socket.io').listen(serverSLL, {pingTimeout: 7000, pingInterval: 10000});
 
 ioSll.sockets.on('connection', function (socket) {
     console.log("client connected command Https");
